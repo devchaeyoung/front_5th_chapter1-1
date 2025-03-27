@@ -1,4 +1,4 @@
-(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const n of e)if(n.type==="childList")for(const a of n.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&s(a)}).observe(document,{childList:!0,subtree:!0});function l(e){const n={};return e.integrity&&(n.integrity=e.integrity),e.referrerPolicy&&(n.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?n.credentials="include":e.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function s(e){if(e.ep)return;e.ep=!0;const n=l(e);fetch(e.href,n)}})();const w=[{id:1,name:"홍길동",createdAt:"5분 전",content:"오늘 날씨가 정말 좋네요. 다들 좋은 하루 보내세요"},{id:2,name:"김철수",createdAt:"15분 전",content:"새로운 프로젝트를 시작했어요. 열심히 코딩 중입니다"},{id:3,name:"이영희",createdAt:"30분 전",content:"오늘 점심 메뉴 추천 받습니다. 뭐가 좋을까요?"},{id:4,name:"박민수",createdAt:"1시간 전",content:"주말에 등산 가실 분 계신가요? 함께 가요!"},{id:5,name:"정수연",createdAt:"2시간 전",content:"새로 나온 영화 재미있대요. 같이 보러 갈 사람?"}],m=()=>JSON.parse(localStorage.getItem("user")),S=m(),r={loginState:!!S,posts:w};function b(){return`
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const n of e)if(n.type==="childList")for(const a of n.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&s(a)}).observe(document,{childList:!0,subtree:!0});function l(e){const n={};return e.integrity&&(n.integrity=e.integrity),e.referrerPolicy&&(n.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?n.credentials="include":e.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function s(e){if(e.ep)return;e.ep=!0;const n=l(e);fetch(e.href,n)}})();const w=[{id:1,name:"홍길동",createdAt:"5분 전",content:"오늘 날씨가 정말 좋네요. 다들 좋은 하루 보내세요"},{id:2,name:"김철수",createdAt:"15분 전",content:"새로운 프로젝트를 시작했어요. 열심히 코딩 중입니다"},{id:3,name:"이영희",createdAt:"30분 전",content:"오늘 점심 메뉴 추천 받습니다. 뭐가 좋을까요?"},{id:4,name:"박민수",createdAt:"1시간 전",content:"주말에 등산 가실 분 계신가요? 함께 가요!"},{id:5,name:"정수연",createdAt:"2시간 전",content:"새로 나온 영화 재미있대요. 같이 보러 갈 사람?"}],m=()=>JSON.parse(localStorage.getItem("user")),S=m(),r={loginState:!!S,posts:w};function g(){return`
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </main>
-  `}const f=t=>(window.location.hash?window.location.hash.slice(1)||"/":window.location.pathname.replace(x,"")||"/")===t,p=({loggedIn:t})=>{const o=t?`
+  `}const f=t=>(window.location.hash?window.location.hash.slice(1)||"/":window.location.pathname.replace(b,"")||"/")===t,h=({loggedIn:t})=>{const o=t?`
           <li><a href="/profile" class=${f("/profile")?"text-blue-600":"text-gray-600"}>프로필</a></li>
           <li id="logout"><a href="#" class="text-gray-600">로그아웃</a></li>
           `:`
@@ -36,7 +36,7 @@
         ${o}
         </ul>
       </nav>
-`},h=()=>`
+`},x=()=>`
     <footer class="bg-gray-200 p-4 text-center">
       <p>&copy; 2024 항해플러스. All rights reserved.</p>
     </footer>
@@ -55,10 +55,10 @@
      <button>댓글</button>
      <button>공유</button>
    </div>
-  </div>`;function g(){return`
+  </div>`;function p(){return`
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
-        ${p({loggedIn:r.loginState})}
+        ${h({loggedIn:r.loginState})}
           <main class="p-4">
            ${r.loginState?`<div class="mb-4 bg-white rounded-lg shadow p-4">
               <textarea class="w-full p-2 border rounded" placeholder="무슨 생각을 하고 계신가요?"></textarea>
@@ -69,7 +69,7 @@
             </div>
           </main>
     
-      ${h()}
+      ${x()}
       </div>
      </div>
     `}function L({Header:t,Footer:o}){const{username:l,bio:s,email:e}=m();return`
@@ -153,4 +153,4 @@
         </a>
       </div>
     </main>
-  `}const E=location.hostname.includes("github.io"),x=E?"/front_5th_chapter1-1":"",i=document.getElementById("root"),v=()=>{const t=window.location.pathname.replace(x,"")||"/";return t==="/"?i.innerHTML=g():t==="/profile"?r.loginState?i.innerHTML=L({Header:p,Footer:h}):(c("/login"),i.innerHTML=b()):t==="/login"?r.loginState?i.innerHTML=g():(c("/"),i.innerHTML=b()):i.innerHTML=P()},c=t=>{history.pushState({},"",t),v()};window.addEventListener("popstate",()=>{d()});const d=()=>{const t=m();r.loginState=!!t,v(),document.querySelectorAll("a").forEach(e=>{e.addEventListener("click",n=>{n.preventDefault();const a=n.target.href.replace(location.origin,"");c(a),d()})});const o=document.getElementById("profile-form");o&&o.addEventListener("submit",e=>{e.preventDefault();const n=document.getElementById("username").value,a=document.getElementById("email").value,y=document.getElementById("bio").value,u=m();u.username=n,u.email=a,u.bio=y,localStorage.setItem("user",JSON.stringify(u)),d()});const l=document.getElementById("login-form");l&&l.addEventListener("submit",e=>{e.preventDefault(),I()});const s=document.getElementById("logout");s&&s.addEventListener("click",O)},I=()=>{const o={username:document.getElementById("username").value,email:"",bio:""};localStorage.setItem("user",JSON.stringify(o)),r.loginState=!0,c("/"),d()},O=()=>{localStorage.removeItem("user"),r.loginState=!1,c("/login"),d()};d();
+  `}const E=location.hostname.includes("github.io"),b=E?"/front_5th_chapter1-1":"",i=document.getElementById("root"),v=()=>{const t=window.location.pathname.replace(b,"")||"/";return t==="/"?i.innerHTML=p():t==="/profile"?r.loginState?i.innerHTML=L({Header:h,Footer:x}):(c("/login"),i.innerHTML=g()):t==="/login"?r.loginState?i.innerHTML=p():(c("/"),i.innerHTML=g()):i.innerHTML=P()},c=t=>{history.pushState({},"",`${b}${t}`),v()};window.addEventListener("popstate",()=>{d()});const d=()=>{const t=m();r.loginState=!!t,v(),document.querySelectorAll("a").forEach(e=>{e.addEventListener("click",n=>{n.preventDefault();const a=n.target.href.replace(location.origin,"");c(a),d()})});const o=document.getElementById("profile-form");o&&o.addEventListener("submit",e=>{e.preventDefault();const n=document.getElementById("username").value,a=document.getElementById("email").value,y=document.getElementById("bio").value,u=m();u.username=n,u.email=a,u.bio=y,localStorage.setItem("user",JSON.stringify(u)),d()});const l=document.getElementById("login-form");l&&l.addEventListener("submit",e=>{e.preventDefault(),I()});const s=document.getElementById("logout");s&&s.addEventListener("click",O)},I=()=>{const o={username:document.getElementById("username").value,email:"",bio:""};localStorage.setItem("user",JSON.stringify(o)),r.loginState=!0,c("/"),d()},O=()=>{localStorage.removeItem("user"),r.loginState=!1,c("/login"),d()};d();
