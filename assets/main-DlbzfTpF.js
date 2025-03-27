@@ -1,4 +1,4 @@
-(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const n of e)if(n.type==="childList")for(const a of n.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&s(a)}).observe(document,{childList:!0,subtree:!0});function l(e){const n={};return e.integrity&&(n.integrity=e.integrity),e.referrerPolicy&&(n.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?n.credentials="include":e.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function s(e){if(e.ep)return;e.ep=!0;const n=l(e);fetch(e.href,n)}})();const w=[{id:1,name:"홍길동",createdAt:"5분 전",content:"오늘 날씨가 정말 좋네요. 다들 좋은 하루 보내세요"},{id:2,name:"김철수",createdAt:"15분 전",content:"새로운 프로젝트를 시작했어요. 열심히 코딩 중입니다"},{id:3,name:"이영희",createdAt:"30분 전",content:"오늘 점심 메뉴 추천 받습니다. 뭐가 좋을까요?"},{id:4,name:"박민수",createdAt:"1시간 전",content:"주말에 등산 가실 분 계신가요? 함께 가요!"},{id:5,name:"정수연",createdAt:"2시간 전",content:"새로 나온 영화 재미있대요. 같이 보러 갈 사람?"}],m=()=>JSON.parse(localStorage.getItem("user")),S=m(),r={loginState:!!S,posts:w};function g(){return`
+(function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const o of e)if(o.type==="childList")for(const r of o.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&l(r)}).observe(document,{childList:!0,subtree:!0});function s(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerPolicy&&(o.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?o.credentials="include":e.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function l(e){if(e.ep)return;e.ep=!0;const o=s(e);fetch(e.href,o)}})();const w=[{id:1,name:"홍길동",createdAt:"5분 전",content:"오늘 날씨가 정말 좋네요. 다들 좋은 하루 보내세요"},{id:2,name:"김철수",createdAt:"15분 전",content:"새로운 프로젝트를 시작했어요. 열심히 코딩 중입니다"},{id:3,name:"이영희",createdAt:"30분 전",content:"오늘 점심 메뉴 추천 받습니다. 뭐가 좋을까요?"},{id:4,name:"박민수",createdAt:"1시간 전",content:"주말에 등산 가실 분 계신가요? 함께 가요!"},{id:5,name:"정수연",createdAt:"2시간 전",content:"새로 나온 영화 재미있대요. 같이 보러 갈 사람?"}],m=()=>JSON.parse(localStorage.getItem("user")),S=m(),a={loginState:!!S,posts:w};function g(){return`
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </main>
-  `}const f=t=>(window.location.hash?window.location.hash.slice(1)||"/":window.location.pathname.replace(b,"")||"/")===t,h=({loggedIn:t})=>{const o=t?`
+  `}const f=t=>(window.location.hash?window.location.hash.slice(1)||"/":window.location.pathname.replace(b,"")||"/")===t,h=({loggedIn:t})=>{const n=t?`
           <li><a href="/profile" class=${f("/profile")?"text-blue-600":"text-gray-600"}>프로필</a></li>
           <li id="logout"><a href="#" class="text-gray-600">로그아웃</a></li>
           `:`
@@ -33,23 +33,23 @@
       <nav class="bg-white shadow-md p-2 sticky top-14">
         <ul class="flex justify-around">
           <li><a href="/" class=${f("/")?"text-blue-600":"text-gray-600"}>홈</a></li>
-        ${o}
+        ${n}
         </ul>
       </nav>
 `},x=()=>`
     <footer class="bg-gray-200 p-4 text-center">
       <p>&copy; 2024 항해플러스. All rights reserved.</p>
     </footer>
-`,$=({id:t,name:o,createdAt:l,content:s})=>`
+`,$=({id:t,name:n,createdAt:s,content:l})=>`
   <div class="bg-white rounded-lg shadow p-4" data-id="${t}">
    <div class="flex items-center mb-2">
      <img src="https://placehold.co/40" alt="프로필" class="rounded-full mr-2">
      <div>
-       <p class="font-bold">${o}</p>
-       <p class="text-sm text-gray-500">${l}</p>
+       <p class="font-bold">${n}</p>
+       <p class="text-sm text-gray-500">${s}</p>
      </div>
    </div>
-   <p>${s}</p>
+   <p>${l}</p>
    <div class="mt-2 flex justify-between text-gray-500">
      <button>좋아요</button>
      <button>댓글</button>
@@ -58,21 +58,21 @@
   </div>`;function p(){return`
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
-        ${h({loggedIn:r.loginState})}
+        ${h({loggedIn:a.loginState})}
           <main class="p-4">
-           ${r.loginState?`<div class="mb-4 bg-white rounded-lg shadow p-4">
+           ${a.loginState?`<div class="mb-4 bg-white rounded-lg shadow p-4">
               <textarea class="w-full p-2 border rounded" placeholder="무슨 생각을 하고 계신가요?"></textarea>
               <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded">게시</button>
             </div>`:""}    
             <div class="space-y-4">
-             ${r.posts.map($).join("")}
+             ${a.posts.map($).join("")}
             </div>
           </main>
     
       ${x()}
       </div>
      </div>
-    `}function L({Header:t,Footer:o}){const{username:l,bio:s,email:e}=m();return`
+    `}function L({Header:t,Footer:n}){const{username:s,bio:l,email:e}=m();return`
       <div class="bg-gray-100 min-h-screen flex justify-center">
         <div class="max-w-md w-full">
      ${t({loggedIn:!0})}
@@ -92,7 +92,7 @@
                     type="text"
                     id="username"
                     name="username"
-                    value="${l}"
+                    value="${s}"
                     class="w-full p-2 border rounded"
                   />
                 </div>
@@ -119,11 +119,11 @@
                   <textarea
                     id="bio"
                     name="bio"
-                    value="${s}"
+                    value="${l}"
                     rows="4"
                     class="w-full p-2 border rounded"
                   >
-    ${s}</textarea
+    ${l}</textarea
                   >
                 </div>
                 <button
@@ -135,7 +135,7 @@
               </form>
             </div>
           </main>
-          ${o()}
+          ${n()}
         </div>
       </div>
 
@@ -153,4 +153,4 @@
         </a>
       </div>
     </main>
-  `}const E=location.hostname.includes("github.io"),b=E?"/front_5th_chapter1-1":"",i=document.getElementById("root"),v=()=>{const t=window.location.pathname.replace(b,"")||"/";return t==="/"?i.innerHTML=p():t==="/profile"?r.loginState?i.innerHTML=L({Header:h,Footer:x}):(c("/login"),i.innerHTML=g()):t==="/login"?r.loginState?i.innerHTML=p():(c("/"),i.innerHTML=g()):i.innerHTML=P()},c=t=>{history.pushState({},"",`${b}${t}`),v()};window.addEventListener("popstate",()=>{d()});const d=()=>{const t=m();r.loginState=!!t,v(),document.querySelectorAll("a").forEach(e=>{e.addEventListener("click",n=>{n.preventDefault();const a=n.target.href.replace(location.origin,"");c(a),d()})});const o=document.getElementById("profile-form");o&&o.addEventListener("submit",e=>{e.preventDefault();const n=document.getElementById("username").value,a=document.getElementById("email").value,y=document.getElementById("bio").value,u=m();u.username=n,u.email=a,u.bio=y,localStorage.setItem("user",JSON.stringify(u)),d()});const l=document.getElementById("login-form");l&&l.addEventListener("submit",e=>{e.preventDefault(),I()});const s=document.getElementById("logout");s&&s.addEventListener("click",O)},I=()=>{const o={username:document.getElementById("username").value,email:"",bio:""};localStorage.setItem("user",JSON.stringify(o)),r.loginState=!0,c("/"),d()},O=()=>{localStorage.removeItem("user"),r.loginState=!1,c("/login"),d()};d();
+  `}const E=!0;console.log(E);const b="/front_5th_chapter1-1",i=document.getElementById("root"),v=()=>{const t=window.location.pathname.replace(b,"")||"/";return t==="/"?i.innerHTML=p():t==="/profile"?a.loginState?i.innerHTML=L({Header:h,Footer:x}):(c("/login"),i.innerHTML=g()):t==="/login"?a.loginState?(c("/"),i.innerHTML=p()):i.innerHTML=g():i.innerHTML=P()},c=t=>{history.pushState({},"",`${b}${t}`),v()};window.addEventListener("popstate",()=>{d()});const d=()=>{const t=m();a.loginState=!!t,v(),document.querySelectorAll("a").forEach(e=>{e.addEventListener("click",o=>{o.preventDefault();const r=o.target.href.replace(location.origin,"");console.log(r),c(r),d()})});const n=document.getElementById("profile-form");n&&n.addEventListener("submit",e=>{e.preventDefault();const o=document.getElementById("username").value,r=document.getElementById("email").value,y=document.getElementById("bio").value,u=m();u.username=o,u.email=r,u.bio=y,localStorage.setItem("user",JSON.stringify(u)),d()});const s=document.getElementById("login-form");s&&s.addEventListener("submit",e=>{e.preventDefault(),I()});const l=document.getElementById("logout");l&&l.addEventListener("click",O)},I=()=>{const n={username:document.getElementById("username").value,email:"",bio:""};localStorage.setItem("user",JSON.stringify(n)),a.loginState=!0,c("/"),d()},O=()=>{localStorage.removeItem("user"),a.loginState=!1,c("/login"),d()};d();
