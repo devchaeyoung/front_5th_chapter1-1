@@ -10,15 +10,21 @@ export const state = {
 };
 
 const App = () => {
-  if (location.pathname === "/login") {
+  const currentUrl = location.href.replace(location.origin, "");
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+  state.loginState = !!user;
+
+  if (currentUrl === "/login" || currentUrl === "/#login") {
+    if (state.loginState) {
+      return MainPage({ ...state });
+    }
     return LoginPage();
   }
-  if (location.pathname === "/profile") {
-    const user = JSON.parse(localStorage.getItem("user"));
+  if (currentUrl === "/profile" || currentUrl === "/#profile") {
     if (!user) return LoginPage();
     return ProfilePage({ ...user });
   }
-  if (location.pathname === "/") {
+  if (currentUrl === "/" || currentUrl === "/#") {
     return MainPage({ ...state });
   }
   return ErrorPage();
