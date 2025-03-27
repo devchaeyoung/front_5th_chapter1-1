@@ -1,7 +1,7 @@
-import ProfilePage from "./pages/profilePage";
-import MainPage from "./pages/mainPage";
-import LoginPage from "./pages/loginPage";
-import ErrorPage from "./pages/errorPage";
+import ProfilePage from "./pages/ProfilePage";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import { MOCK_POSTS } from "./mockPosts";
 
 export const state = {
@@ -16,7 +16,7 @@ const App = () => {
 
   if (currentUrl === "/login" || currentUrl === "/#login") {
     if (state.loginState) {
-      return MainPage({ ...state });
+      return HomePage({ ...state });
     }
     return LoginPage();
   }
@@ -25,9 +25,9 @@ const App = () => {
     return ProfilePage({ ...user });
   }
   if (currentUrl === "/" || currentUrl === "/#") {
-    return MainPage({ ...state });
+    return HomePage({ ...state });
   }
-  return ErrorPage();
+  return NotFoundPage();
 };
 
 window.addEventListener("popstate", () => {
