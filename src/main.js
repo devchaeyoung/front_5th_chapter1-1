@@ -2,29 +2,27 @@ import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import { MOCK_POSTS } from "./mockPosts";
 
-export const state = {
-  loginState: false,
-  posts: MOCK_POSTS,
-};
+import { setUser, user } from "./utils";
+import { state } from "./store";
 
-const App = () => {
+export const App = () => {
+  state.isHash = location.pathname.includes("/index.hash.html");
   const currentUrl = location.href.replace(location.origin, "");
-  const user = JSON.parse(localStorage.getItem("user") || "null");
   state.loginState = !!user;
 
-  if (currentUrl === "/login" || currentUrl === "/#login") {
+  if (currentUrl === "/login") {
     if (state.loginState) {
+      location.replace("/");
       return HomePage({ ...state });
     }
     return LoginPage();
   }
-  if (currentUrl === "/profile" || currentUrl === "/#profile") {
+  if (currentUrl === "/profile") {
     if (!user) return LoginPage();
     return ProfilePage({ ...user });
   }
-  if (currentUrl === "/" || currentUrl === "/#") {
+  if (currentUrl === "/") {
     return HomePage({ ...state });
   }
   return NotFoundPage();
@@ -35,10 +33,10 @@ window.addEventListener("popstate", () => {
 });
 
 const render = () => {
-  const user = JSON.parse(localStorage.getItem("user") || "null");
   state.loginState = !!user;
 
-  document.getElementById("root").innerHTML = App();
+  const root = document.getElementById("root");
+  root.innerHTML = App();
 
   document.querySelectorAll("a").forEach((el) => {
     el.addEventListener("click", (e) => {
@@ -52,19 +50,7 @@ const render = () => {
   const profileForm = document.getElementById("profile-form");
 
   if (profileForm) {
-    profileForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const username = document.getElementById("username").value;
-      const email = document.getElementById("email").value;
-      const bio = document.getElementById("bio").value;
-      const user = JSON.parse(localStorage.getItem("user"));
-      user.username = username;
-      user.email = email;
-      user.bio = bio;
-      console.log(user);
-      localStorage.setItem("user", JSON.stringify(user));
-      render();
-    });
+    profileForm.addEventListener("submit", updateProfile);
   }
 
   const loginForm = document.getElementById("login-form");
@@ -81,24 +67,22 @@ const render = () => {
   }
 };
 
-const login = () => {
+export const login = () => {
   const username = document.getElementById("username").value;
   const user = {
     username: username,
     email: "",
     bio: "",
   };
-  localStorage.setItem("user", JSON.stringify(user));
-
+  setUser(user);
   state.loginState = true;
 
   history.pushState(null, "", "/");
   render();
 };
 
-const logout = () => {
+export const logout = () => {
   localStorage.removeItem("user");
-
   state.loginState = false;
 
   history.pushState(null, "", "/login");
@@ -106,3 +90,16 @@ const logout = () => {
 };
 
 render();
+
+const updateProfile = (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const bio = document.getElementById("bio").value;
+  const user = JSON.parse(localStorage.getItem("user"));
+  user.username = username;
+  user.email = email;
+  user.bio = bio;
+  setUser();
+  render();
+};

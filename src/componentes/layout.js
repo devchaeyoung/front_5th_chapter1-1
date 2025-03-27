@@ -4,14 +4,14 @@ export const Footer = () => /* html */ `
     </footer>
 `;
 
-export const Header = ({ loggedIn }) => {
+export const Header = ({ loggedIn, isHash }) => {
   const nav = loggedIn
     ? /* html */ `
-          <li><a href="/profile" class=${location.pathname === "/profile" ? "text-blue-600" : "text-gray-600"}>프로필</a></li>
+          <li><a href=${isHash ? "#/profile" : "/profile"} class=${location.pathname.includes("profile") ? "text-blue-600" : "text-gray-600"}>프로필</a></li>
           <li id="logout"><a href="#" class="text-gray-600">로그아웃</a></li>
           `
     : /* html */ `
-          <li><a href="/login" class=${location.pathname === "/login" ? "text-blue-600" : "text-gray-600"}>로그인</a></li>
+          <li><a href=${isHash ? "#/login" : "/login"} class=${location.pathname.includes("login") ? "text-blue-600" : "text-gray-600"}>로그인</a></li>
           `;
 
   return /* html */ `
@@ -21,7 +21,7 @@ export const Header = ({ loggedIn }) => {
 
       <nav class="bg-white shadow-md p-2 sticky top-14">
         <ul class="flex justify-around">
-          <li><a href="/" class=${location.pathname === "/" ? "text-blue-600" : "text-gray-600"}>홈</a></li>
+          <li><a href=${isHash ? "#" : "/"} class=${location.pathname === "/index.hash.html" || "" ? "text-blue-600" : "text-gray-600"}>홈</a></li>
         ${nav}
         </ul>
       </nav>

@@ -1,12 +1,12 @@
 import { Footer, Header } from "../componentes/layout";
 
-export default function ProfilePage({ username, email, bio }) {
+export default function ProfilePage({ username, email, bio, isHash }) {
   return /* html */ `
 
     <div id="root">
       <div class="bg-gray-100 min-h-screen flex justify-center">
         <div class="max-w-md w-full">
-     ${Header({ loggedIn: true })}
+     ${Header({ loggedIn: true, isHash: isHash })}
           <main class="p-4">
             <div class="bg-white p-8 rounded-lg shadow-md">
               <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">

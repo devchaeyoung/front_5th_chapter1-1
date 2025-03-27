@@ -17,11 +17,11 @@ const Post = ({ id, name, createdAt, content }) => /* html */ `
    </div>
   </div>`;
 
-export default function MainPage({ loginState, posts }) {
+export default function HomePage({ loginState, posts, isHash }) {
   return /* html */ `
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
-        ${Header({ loggedIn: loginState })}
+        ${Header({ loggedIn: loginState, isHash: isHash })}
           <main class="p-4">
            ${
              loginState
