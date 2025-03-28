@@ -30,7 +30,7 @@
           <li><a href="/" class="${d("/")?"text-blue-600 font-bold":"text-gray-600"}">홈</a></li>
         ${t?`
           <li><a href="/profile" class="${d("/profile")?"text-blue-600 font-bold":"text-gray-600"}">프로필</a></li>
-          <li id="logout"><a href="#" class="text-gray-600">로그아웃</a></li>
+          <li id="logout"><a id="logout" href="#" class="text-gray-600">로그아웃</a></li>
           `:`
           <li><a href="/login" class="${d("/login")?"text-blue-600 font-bold":"text-gray-600"}">로그인</a></li>
           `}
